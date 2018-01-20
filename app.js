@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var controller = require('./routes/ApiController');
-var app = expresss();
+var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', controller);

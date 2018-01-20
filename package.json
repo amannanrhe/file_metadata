@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/amannanrhe/file_metadata/issues"
   },
-  "homepage": "https://github.com/amannanrhe/file_metadata#readme"
+  "homepage": "https://github.com/amannanrhe/file_metadata#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
