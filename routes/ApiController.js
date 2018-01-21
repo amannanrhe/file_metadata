@@ -9,7 +9,8 @@ router.get('/', function(req, res, next){
 });
 
 router.post('/upload', upload.single('uploadata'), function(req, res, next){
-    res.send({size:req.file.size + ' bytes'});
+    if(req.file) res.send({size:req.file.size + ' bytes'});
+    else res.send({error: 'no file uploaded'})
 });
 
 module.exports = router;

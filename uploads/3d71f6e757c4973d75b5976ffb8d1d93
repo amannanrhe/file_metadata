@@ -1,0 +1,196 @@
+//module1
+//console.log("HELLO WORLD");
+
+//module2
+/*var sum = 0;
+for(var i=2; i<process.argv.length; i++){
+  sum+=parseInt(process.argv[i]);
+}
+console.log(sum);
+return sum;*/
+
+//module 3
+/*var fs = require('fs');
+var str = fs.readFileSync(process.argv[2]).toString();
+var arr = str.split('\n');
+console.log(arr.length-1);*/
+
+//module 4
+/*var fs = require('fs');
+var buf = process.argv[2];
+fs.readFile(buf,function(err,data){
+  if(err) return err;
+  var str = data.toString();
+  var arr = str.split('\n');
+  console.log(arr.length-1);  
+});*/
+
+//module 5
+/*var fs = require('fs');
+var path = process.argv[2];
+var ext = "." + process.argv[3];
+fs.readdir(path,function(err,list){
+  for(var i = 0; i<list.length; i++){
+    if(list[i].includes(ext)){
+      console.log(list[i]);
+    }
+  }
+});*/
+
+//module 6
+/*var mod = require('./module.js');
+
+var path = process.argv[2];
+var ext = process.argv[3];
+
+mod(path,ext,function(err,list){
+  if(err) return console.log(err);
+  for(var i = 0; i<list.length; i++){
+    console.log(list[i]);
+  }
+});
+
+var fs = require('fs');
+
+module.exports = function(dir,ext,callback){
+  fs.readdir(dir,function(err,list){
+    if(err) return callback(err);
+    var arr = [];
+    for(var i = 0; i<list.length; i++){
+      if(list[i].includes('.'+ext)){
+        arr.push(list[i]);
+      }
+    }
+    callback(null,arr);
+  });
+};*/
+
+//module 7
+/*var http = require('http');
+var url = process.argv[2];
+
+http.get(url,function(response){
+  response.setEncoding('utf8');
+  response.on("error",function(data){console.log(data)});
+  response.on("data",function(data){console.log(data)});
+});*/
+
+//module 8
+/*var http = require('http');
+var url = process.argv[2];
+var endData = '';
+
+http.get(url,function(response){
+  response.setEncoding('utf8');
+  response.on("error",function(data){console.log(data)});
+  response.on("data",function(data){endData+=data});
+  response.on("end",function(){
+    console.log(endData.length);
+    console.log(endData);
+  });
+});*/
+
+//module 9
+/*var http = require('http');
+var url = process.argv[2];
+var arr = [];
+var check = 0;
+
+for(var i = 2; i < process.argv.length; i++){
+  getData(i);
+}
+
+function getData(i){
+  http.get(process.argv[i],function(response){
+    var endData = '';
+    response.setEncoding('utf8');
+    response.on("error",function(data){
+      console.log(data);
+    });
+    response.on("data",function(data){
+      endData+=data;
+    });
+    response.on("end",function(){
+      arr.push([endData,i]);
+      check++;
+      if(check===process.argv.length-2){
+        print();
+      }
+    });
+  });
+}
+
+function print(){
+  arr = arr.sort(function(a,b){return a[1] - b[1];})
+  for(var i = 0; i < arr.length; i++){
+    console.log(arr[i][0]);
+  }
+}*/
+
+//module 10
+/*var net = require('net');
+
+function createDate(){
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = checkLength(date.getMonth()+1);
+  var day = checkLength(date.getDate());
+  var hours = checkLength(date.getHours());
+  var min = checkLength(date.getMinutes());
+  console.log(year + "-" + month + "-" + day + " " + hours + ":" + min);
+  
+  return year + "-" + month + "-" + day + " " + hours + ":" + min;
+}
+
+function checkLength(item){
+  var newItem;
+  if(item.length<2){
+    newItem = '0';
+    newItem += item;
+  } else {
+    newItem = item;
+  }
+  
+  return newItem;
+}
+
+var server = net.createServer(function(socket){
+  socket.end(createDate());
+});
+
+server.listen(parseInt(process.argv[2]));*/
+
+//module 11
+/*var http = require('http');
+var fs = require('fs');
+var path = process.argv[3];
+var server  = http.createServer(function(req,res){
+  fs.createReadStream(path).pipe(res)
+});
+server.listen(process.argv[2]);*/
+
+//module 12
+/*var http = require('http')
+var data;
+var server = http.createServer(function (req, res) {
+  if (req.method !== 'POST') {
+    return res.end('send POST\n')
+  }
+  
+  req.on("data",function(chunk){
+    data += chunk.toString();
+  });
+  req.on("end",function(){
+    console.log(data.toUpperCase());
+    res.write(data.toUpperCase());
+    res.end();
+  });
+  
+})
+
+server.listen(Number(process.argv[2]))*/
+
+//Module 13
+
+
+
